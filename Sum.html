@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add 2 Numbers</title>
+  <style>
+    /* General styles */
+    body {
+      background-color: rgb(99, 198, 255);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      display: flex;
+      gap: 20px; /* Space between the circles */
+    }
+
+    /* Circle styles */
+    .circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    /* Input styles */
+    input[type="text"] {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 5px;
+      text-align: center;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <form id="addForm">
+    <!-- Circle 1 -->
+    <div class="circle">
+      <label for="num1">First Number</label>
+      <input type="text" id="num1" name="numbr1" placeholder="Enter a number">
+    </div>
+
+    <!-- Circle 2 -->
+    <div class="circle">
+      <label for="num2">Second Number</label>
+      <input type="text" id="num2" name="numbr2" placeholder="Enter a number">
+    </div>
+    
+    <!-- Button -->
+    <button type="button" id="calculate">Get Answer</button>
+
+    <!-- Result -->
+    <div class="circle">
+      <label for="sum">Sum</label>
+      <input type="text" id="sum" name="sums" readonly>
+    </div>
+  </form>
+
+  <script>
+    // Function to calculate the sum
+    document.getElementById("calculate").addEventListener("click", () => {
+      // Get input values
+      const numberOne = parseFloat(document.getElementById("num1").value) || 0;
+      const numberTwo = parseFloat(document.getElementById("num2").value) || 0;
+
+      // Calculate the sum
+      const sums = numberOne + numberTwo;
+
+      // Display the result in the readonly input
+      document.getElementById("sum").value = sums;
+    });
+  </script>
+</body>
+</html>
