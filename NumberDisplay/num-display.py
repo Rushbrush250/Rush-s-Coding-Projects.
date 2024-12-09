@@ -1,6 +1,6 @@
 import numpy as np
 
-numbers = np.load("numbers.npy")
+numbers = np.load("NumberDisplay//numbers.npy")
 # Print the current array in a readable format
 print(f'''
 
