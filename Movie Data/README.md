@@ -7,12 +7,7 @@ This project provides an interactive way to explore a movie dataset. The dataset
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [How to Run](#how-to-run)
-- [Dataset Description](#dataset-description)
-- [Functions](#functions)
-- [Example Usage](#example-usage)
-- [Error Handling](#error-handling)
-- [License](#license)
-
+  
 ## Project Overview
 
 The main purpose of this project is to provide users with an interactive way to analyze a movie dataset. Users can learn about the various genres, get average time spent watching movies per month, and summarize the distribution of interest levels in the dataset.
