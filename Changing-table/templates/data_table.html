@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      .input-holder {
+        position: absolute;
+        bottom: 0;
+        background-color: gray;
+        width: 50%;
+        left: 25%;
+        height: 72px;
+        border-radius: 20px 20px 0 0;
+      }
+      .input-text {
+        position: absolute;
+        bottom: 0;
+        left: 26%;
+        width: 45%;
+        height: 27px;
+        border-radius: 20px 20px 0 0;
+        border: 2px solid gold;
+        font-family: 'Lexend', sans-serif;
+        font-size: medium;
+      }
+      span {
+        color: powderblue;
+        font-family: Lexend, sans-serif;
+        white-space: pre-wrap;
+        display: block;
+        font-size: 22px;
+        display: inline-block;
+        border: 5px solid black;
+        text-align: center;
+        border-radius: 10px;
+        padding: 3px;
+      }
+      .select {
+        height: 31px;
+        width: 45%;
+        background-color: rgb(250, 223, 20);
+        color: green;
+        font-size: 20px;
+      }
+      .spacing {
+        margin: 20px;
+      }
+      .space {
+        margin-bottom: 55px;
+      }
+      .submiting {
+        position: absolute;
+        right: 30px;
+        bottom: 12%;
+        width: 55px;
+        height: 55px;
+        border-radius: 12%;
+        text-align: center;
+        background-color: rgb(66, 245, 152);
+      }
+      .submit-word {
+        color: white;
+        position: relative;
+        right: 30%;
+        font-family: Lexend, sans-serif;
+        font-size: 14px;
+      }
+    </style>
+</head>
+<body>
+  <center>
+    <p>
+    <div class="space"></div>
+      <span>{{dt0}}</span>
+      <div class="spacing"></div>
+      <span>{{dt1}}</span>
+      <div class="spacing"></div>
+      <span>{{dt2}}</span>
+      <div class="spacing"></div>
+      <span>{{dt3}}</span>
+      <div class="spacing"></div>
+      <span>{{dt4}}</span>
+      <div class="spacing"></div>
+      <span>{{dt5}}</span>
+      <div class="spacing"></div>
+      <span>{{dt6}}</span>
+      <div class="spacing"></div>
+      <span>{{dt7}}</span>
+    </p>
+  </center>
+
+  <center>
+    <form id="form">
+      <div class="input-holder">
+        <center>
+          <select name="select" id="select" class="select">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <input type="text" class="input-text" id="input-text" placeholder="Type anything to add">
+          <button type="submit" class="submiting" id="submiting"><div class="submit-word">Submit</div></button>
+        </center>
+      </div>
+    </form>
+  </center>
+
+  <script>
+    const textDoc = document.getElementById('input-text');
+    const selectDoc = document.getElementById('select');
+    const formDoc = document.getElementById('form');
+
+    formDoc.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const textDocValue = textDoc.value;
+      const selectDocValue = selectDoc.value;
+      const intver = parseInt(selectDocValue);
+
+      console.log("Text input value:", textDocValue);
+      console.log("Select input value:", selectDocValue);
+      console.log("Integer value:", intver);
+
+      fetch('/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          texts: textDocValue,
+          select: selectDocValue,
+          intver: intver
+        })
+      })
+      .then(() => {
+        window.location.href = '/reload';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>
