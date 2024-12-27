@@ -1,6 +1,5 @@
 from os import urandom
 import secrets as sec
-import token
 import random as rd
 from faker import Faker
 
