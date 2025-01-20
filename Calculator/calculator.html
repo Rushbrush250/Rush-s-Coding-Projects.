@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .calculator {
+        width: 375px;
+        height: 500px;
+        background-color: rgb(60, 61, 60);
+        border-radius: 20px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+      }
+      .showcase {
+        width: 225px;
+        height: 52px;
+        background-color: orange;
+         border-radius: 20px;
+         margin-top: 20px;
+      }
+      .buttons {
+        position: relative;
+        top: 70px;
+        background-color: lightgreen;
+        height: 34px;
+        width: 43px;
+      }
+      span {
+        margin: 27px;
+        margin-top: 37px;
+      }
+      .break {
+        margin: 37px;
+        display: block;
+      }
+      .operation {
+        position: relative;
+        bottom: 135px;
+        margin: 8px;
+        height: 41px;
+        width: 75px;
+        background-color: rgb(247, 247, 0);
+        color: red;
+        font-size: 17px;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .break2 {
+        display: block;
+        margin: 0;
+      }
+      .equal {
+        bottom: 0;
+        width: 375px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 30px;
+        align-items: center;
+        font-weight: 900;
+        background-color: rgb(32, 255, 8);
+        color: white;
+        border: 3px solid gold;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <div class="calculator">
+       <center>
+        <input type="text" class="showcase" id="showcase" readonly>
+       </center>
+        <span><input type="button" class="buttons" id="button1" value="1" onclick="addToDisplay('1')"></span>
+        <span><input type="button" class="buttons" id="button2" value="2" onclick="addToDisplay('2')"></span>
+        <span><input type="button" class="buttons" id="button3" value="3" onclick="addToDisplay('3')"></span>
+        <span class="break">
+         <span><input type="button" class="buttons" id="button4" value="4" onclick="addToDisplay('4')"></span>
+         <span><input type="button" class="buttons" id="button5" value="5" onclick="addToDisplay('5')"></span>
+         <span><input type="button" class="buttons" id="button6" value="6" onclick="addToDisplay('6')"></span>
+        </span>
+        <span><input type="button" class="buttons" id="button7" value="7" onclick="addToDisplay('7')"></span>
+        <span><input type="button" class="buttons" id="button8" value="8" onclick="addToDisplay('8')"></span>
+        <span><input type="button" class="buttons" id="button9" value="9" onclick="addToDisplay('9')"></span>
+        <span><input type="button" class="buttons" id="button0" value="0" onclick="addToDisplay('0')"></span>
+      </div>
+      <button class="operation" id="addition" onclick="addToDisplay('+')">+</button>
+      <button class="operation" id="subtraction" onclick="addToDisplay('-')">-</button>
+      <button class="operation" id="delete" onclick="removing('del')">delete</button>
+      <span class="break2">
+        <button class="operation" id="multiplication" onclick="addToDisplay('×')">×</button>
+        <button class="operation" id="division" onclick="addToDisplay('÷')">÷</button>
+        <button class="operation" id="addition" onclick="removing('cls')">clear</button>
+      </span>
+      <button class="equal" id="equal" onclick="outputEqual(document.getElementById('showcase').value)">=</button>
+    </center>
+    <script>
+      var currentInput = ""
+      function addToDisplay(addedval) {
+        currentInput += addedval;
+        document.getElementById("showcase").value = currentInput
+      }
+      function outputEqual(showcaseVaule) {
+        currentInput = showcaseVaule.replaceAll("×", "*").replaceAll("÷", "/")
+        try {
+          currentInput = eval(currentInput)
+          if (currentInput == Infinity) {
+            document.getElementById("showcase").value = "Undefined"
+            currentInput = ""
+          } else {
+            currentInput = String(eval(currentInput));
+            document.getElementById("showcase").value = currentInput;
+          }
+        } catch (error) {
+          document.getElementById("showcase").value = "Error"
+          currentInput = ""
+        }
+      }
+      function removing(conditionGiven) {
+      if (conditionGiven == "del") {
+         currentInput = currentInput.slice(0, -1)
+         document.getElementById("showcase").value = currentInput
+        } else if (conditionGiven == "cls") {
+          currentInput = ""
+          document.getElementById("showcase").value = currentInput
+        }
+      }
+    </script>
+  </body>
+</html>
